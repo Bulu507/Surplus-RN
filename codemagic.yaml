@@ -1,0 +1,88 @@
+versions: 1.0.7.6
+workflows:
+  android-development: 
+    name: Android Development
+    environment:
+      groups:
+        - android-firebase
+      node: 14.18.0
+    scripts: 
+      - name: install npm
+        script: npm install --f
+      - name: set env
+        script: cp .env.staging .env
+      - name: Build Android release
+        script: |
+                cd android
+                chmod +x ./gradlew
+                ./gradlew clean
+                npm cache clean --f
+                ./gradlew assembleRelease
+    artifacts:
+            - android/app/build/outputs/**/*.aab
+            - android/app/build/outputs/**/*.apk
+    publishing:
+      firebase:
+        firebase_token: 1//0g4KT1M9dDU5JCgYIARAAGBASNwF-L9IrqnpWaqZ3SD6Ybxi-V0EcU-AKaZXKkdNU2JHeIl7MmRThHr9vDtE95BVrRMTd-5ho6jQ
+        android:
+          app_id: 1:1022055466050:android:350b3829a059363c3719db
+          groups: 
+            - Developer
+
+  android-staging: 
+    name: Android Staging
+    environment:
+      groups:
+        - android-firebase
+      node: 14.18.0
+    scripts: 
+      - name: install npm
+        script: npm install --f
+      - name: set env
+        script: cp .env.staging .env
+      - name: Build Android release
+        script: |
+                cd android
+                chmod +x ./gradlew
+                ./gradlew clean
+                npm cache clean --f
+                ./gradlew app:assembleRelease
+    artifacts:
+            - android/app/build/outputs/**/*.aab
+            - android/app/build/outputs/**/*.apk
+    publishing:
+      firebase:
+        firebase_token: 1//0g4KT1M9dDU5JCgYIARAAGBASNwF-L9IrqnpWaqZ3SD6Ybxi-V0EcU-AKaZXKkdNU2JHeIl7MmRThHr9vDtE95BVrRMTd-5ho6jQ
+        android:
+          app_id: 1:1022055466050:android:6d477d8fea5b6a253719db
+          groups: 
+            - redAnt
+
+  android-production: 
+    name: Android Production
+    environment:
+      groups:
+        - android-firebase
+      node: 14.18.0
+    scripts: 
+      - name: install npm
+        script: npm install --f
+      - name: set env
+        script: cp .env.production .env
+      - name: Build Android release
+        script: |
+                cd android
+                chmod +x ./gradlew
+                ./gradlew clean
+                npm cache clean --f
+                ./gradlew app:assembleRelease
+    artifacts:
+            - android/app/build/outputs/**/*.aab
+            - android/app/build/outputs/**/*.apk
+    publishing:
+      firebase:
+        firebase_token: 1//0g4KT1M9dDU5JCgYIARAAGBASNwF-L9IrqnpWaqZ3SD6Ybxi-V0EcU-AKaZXKkdNU2JHeIl7MmRThHr9vDtE95BVrRMTd-5ho6jQ
+        android:
+          app_id: 1:1022055466050:android:713df8d8281a95eb3719db
+          groups: 
+            - redAnt
