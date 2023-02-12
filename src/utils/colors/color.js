@@ -1,6 +1,6 @@
 const green = {
-  green1: '#009844',
-  green2: '#24822E',
+  green1: '#4daf9e',
+  green2: '#267968',
   green3: '#008A77',
   green4: '#124117',
   green5: '#D4EDDA',
@@ -21,6 +21,7 @@ const grey = {
   grey3: '#8c8c8c',
   grey4: '#F4EFF4',
   grey5: '#313033',
+  grey6: '#dbe0e4',
 };
 
 const red = {
